@@ -16,26 +16,17 @@
 #limitations under the License.
 #
 
-# Alter default kernel version
-# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' target/linux/bcm53xx/Makefile
-# cat target/linux/bcm53xx/Makefile |grep KERNEL_PATCHVER
-# echo '=========Alert Kernel OK!========='
+echo '只编译K3固件'
+sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm_k3|TARGET_DEVICES += phicomm_k3|' target/linux/bcm53xx/image/Makefile
 
-# Alter default router IP
-#sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
+echo '更改主机名'
+sed -i "s/hostname='.*'/hostname='K3'/g" package/base-files/files/bin/config_generate
 
-#修改NTP设置
-#sed -i "s/'0.openwrt.pool.ntp.org'/'ntp1.aliyun.com'/g" package/base-files/files/bin/config_generate
-#sed -i "s/'1.openwrt.pool.ntp.org'/'ntp2.aliyun.com'/g" package/base-files/files/bin/config_generate
-#sed -i "s/'2.openwrt.pool.ntp.org'/'ntp3.aliyun.com'/g" package/base-files/files/bin/config_generate
-#sed -i "s/'3.openwrt.pool.ntp.org'/'ntp4.aliyun.com'/g" package/base-files/files/bin/config_generate
-#cat package/base-files/files/bin/config_generate |grep system.ntp.server=
-#echo 'Alert NTP Settings OK!====================='
+echo '配置默认ip'
+sed -i 's/192.168.1.1/192.168.11.1/g' package/base-files/files/bin/config_generate
 
-echo '修改主机名'
-sed -i "s/hostname='OpenWrt'/hostname='Phicomm-K3'/g" package/base-files/files/bin/config_generate
-cat package/base-files/files/bin/config_generate |grep hostname=
-echo '=========Alert hostname OK!========='
+echo '清除默认密码password'
+sed -i '/V4UetPzk$CYXluq4wUazHjmCDBCqXF/d' package/lean/default-settings/files/zzz-default-settings
 
 echo '移除主页跑分信息显示'
 sed -i 's/ <%=luci.sys.exec("cat \/etc\/bench.log") or ""%>//g' package/lean/autocore/files/arm/index.htm
