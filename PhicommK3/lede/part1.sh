@@ -26,7 +26,7 @@
 
 echo '添加软件源'
 echo 'src-git sirpdboy https://github.com/sirpdboy/sirpdboy-package' >>feeds.conf.default
-#echo 'src-git small8 https://github.com/kenzok8/small-package' >>feeds.conf.default
+echo 'src-git small8 https://github.com/kenzok8/small-package' >>feeds.conf.default
 #echo 'src-git kiddin9 https://github.com/kiddin9/openwrt-packages' >>feeds.conf.default
 
 echo '添加jerrykuku的argon-mod主题'
