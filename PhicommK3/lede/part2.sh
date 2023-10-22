@@ -16,8 +16,8 @@
 #limitations under the License.
 #
 
-echo '只编译K3固件'
-sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm_k3|TARGET_DEVICES += phicomm_k3|' target/linux/bcm53xx/image/Makefile
+#echo '只编译K3固件'
+#sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm_k3|TARGET_DEVICES += phicomm_k3|' target/linux/bcm53xx/image/Makefile
 
 echo '更改主机名'
 sed -i "s/hostname='.*'/hostname='K3'/g" package/base-files/files/bin/config_generate
